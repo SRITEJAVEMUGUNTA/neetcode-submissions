@@ -1,0 +1,12 @@
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        prevRow= [1 for _ in range(n)]
+        for r in range(m-2, -1, -1):
+            curRow = [0 for _ in range(n)]
+            curRow[-1] = 1
+            for c in range(n-2,-1,-1):
+                curRow[c] = curRow[c+1] + prevRow[c]
+            
+            prevRow = curRow
+
+        return prevRow[0]
